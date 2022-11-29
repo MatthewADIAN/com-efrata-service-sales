@@ -1,0 +1,3 @@
+ignore:
+  - "Com.Efrata.Service.Sales.Lib/Migrations"
+  - "Com.Efrata.Service.Sales.WebApi/Startup.cs"
