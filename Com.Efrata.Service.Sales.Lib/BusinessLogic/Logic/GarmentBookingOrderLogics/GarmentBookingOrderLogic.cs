@@ -352,7 +352,7 @@ namespace Com.Efrata.Service.Sales.Lib.BusinessLogic.Logic.GarmentBookingOrderLo
 
             string buyer = FilterDictionary["BuyerCode"];
             string section = FilterDictionary["SectionCode"];
-            string comodity = FilterDictionary["ComodityCode"];
+            //string comodity = FilterDictionary["ComodityCode"];
 
 
             List<string> SelectedFields = new List<string>()
@@ -365,7 +365,7 @@ namespace Com.Efrata.Service.Sales.Lib.BusinessLogic.Logic.GarmentBookingOrderLo
                           join c in DbContext.CostCalculationGarments on b.Id equals c.BookingOrderItemId into cc
                           from CCG in cc.DefaultIfEmpty()
                           where a.HadConfirmed == true && a.IsCanceled == false && b.IsCanceled == false
-                                && a.BuyerCode == buyer && a.SectionCode == section && b.ComodityCode == comodity
+                                && a.BuyerCode == buyer && a.SectionCode == section //&& b.ComodityCode == comodity
 
                           select new GarmentBookingOrderForCCGViewModel
                           {
