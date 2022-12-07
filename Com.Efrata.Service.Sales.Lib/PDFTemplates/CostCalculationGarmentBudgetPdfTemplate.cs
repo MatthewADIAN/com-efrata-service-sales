@@ -345,7 +345,7 @@ namespace Com.Efrata.Service.Sales.Lib.PDFTemplates
 
             cell_signature.Phrase = new Phrase("Bag. Penjualan", normal_font);
             table_signature.AddCell(cell_signature);
-            cell_signature.Phrase = new Phrase("Ka. Sie/Ka. Bag Penjualan", normal_font);
+            cell_signature.Phrase = new Phrase("Kasie MD", normal_font);
             table_signature.AddCell(cell_signature);
             cell_signature.Phrase = new Phrase("Ka. Sie/Ka .Bag Pembelian", normal_font);
             table_signature.AddCell(cell_signature);
