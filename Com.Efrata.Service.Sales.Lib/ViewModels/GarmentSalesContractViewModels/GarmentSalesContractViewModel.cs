@@ -73,10 +73,10 @@ namespace Com.Efrata.Service.Sales.Lib.ViewModels.GarmentSalesContractViewModels
             {
                 yield return new ValidationResult("Destination harus diisi", new List<string> { "Country" });
             }
-            if (string.IsNullOrWhiteSpace(FOB))
-            {
-                yield return new ValidationResult("FOB harus diisi", new List<string> { "FOB" });
-            }
+            //if (string.IsNullOrWhiteSpace(FOB))
+            //{
+            //    yield return new ValidationResult("FOB harus diisi", new List<string> { "FOB" });
+            //}
             if (string.IsNullOrWhiteSpace(DocPresented))
             {
                 yield return new ValidationResult("DocPresented harus diisi", new List<string> { "DocPresented" });
