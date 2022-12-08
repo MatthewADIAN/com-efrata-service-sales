@@ -713,7 +713,7 @@ namespace Com.Efrata.Service.Sales.Lib.PDFTemplates
 
             cell_signature.Phrase = new Phrase("Bagian Penjualan", normal_font);
             table_signature.AddCell(cell_signature);
-            cell_signature.Phrase = new Phrase("Kasie/Kabag Penjualan", normal_font);
+            cell_signature.Phrase = new Phrase("Kasie MD", normal_font);
             table_signature.AddCell(cell_signature);
 
             cell_signature_noted.Phrase = new Phrase($"( {viewModel.CreatedBy} )", normal_font);

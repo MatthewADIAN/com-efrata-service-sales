@@ -587,7 +587,7 @@ namespace Com.Efrata.Service.Sales.Lib.PDFTemplates
             imageIso.SetAbsolutePosition(width - imageIso.ScaledWidth - marginRight, height - imageIso.ScaledHeight - marginTop + 60);
             cb.AddImage(imageIso, inlineImage: true);
 
-            cb.ShowTextAligned(PdfContentByte.ALIGN_CENTER, "CERTIFICATE ID19 / 05073", width - (imageIso.ScaledWidth / 2) - marginRight, height - imageIso.ScaledHeight - marginTop + 55, 0);
+            //cb.ShowTextAligned(PdfContentByte.ALIGN_CENTER, "CERTIFICATE ID19 / 05073", width - (imageIso.ScaledWidth / 2) - marginRight, height - imageIso.ScaledHeight - marginTop + 55, 0);
 
             #endregion
 
