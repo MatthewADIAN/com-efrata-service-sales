@@ -47,7 +47,9 @@ namespace Com.Efrata.Service.Sales.Lib.ViewModels.GarmentSalesContractViewModels
         public string RecipientName { get; set; }
         public string RecipientAddress { get; set; }
         public string RecipientJob { get; set; }
-
+        public bool UseVat { get; set; }
+        public double VatValue { get; set; }
+        public int VatId { get; set; }
         public List<GarmentSalesContractROViewModel> SalesContractROs { get; set; }
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
@@ -65,6 +67,10 @@ namespace Com.Efrata.Service.Sales.Lib.ViewModels.GarmentSalesContractViewModels
             {
                 yield return new ValidationResult("Bank Detail harus di isi", new List<string> { "AccountBankId" });
             }
+            if (UseVat == true && VatValue == 0)
+            {
+                yield return new ValidationResult("Pajak PPN harus diisi", new List<string> { "VatValue" });
+            }
             if (string.IsNullOrWhiteSpace(Packing))
             {
                 yield return new ValidationResult("Packing harus diisi", new List<string> { "Packing" });
@@ -73,10 +79,10 @@ namespace Com.Efrata.Service.Sales.Lib.ViewModels.GarmentSalesContractViewModels
             {
                 yield return new ValidationResult("Destination harus diisi", new List<string> { "Country" });
             }
-            if (string.IsNullOrWhiteSpace(FOB))
-            {
-                yield return new ValidationResult("FOB harus diisi", new List<string> { "FOB" });
-            }
+            //if (string.IsNullOrWhiteSpace(FOB))
+            //{
+            //    yield return new ValidationResult("FOB harus diisi", new List<string> { "FOB" });
+            //}
             if (string.IsNullOrWhiteSpace(DocPresented))
             {
                 yield return new ValidationResult("DocPresented harus diisi", new List<string> { "DocPresented" });

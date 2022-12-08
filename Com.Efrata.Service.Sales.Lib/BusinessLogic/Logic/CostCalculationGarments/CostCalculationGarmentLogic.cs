@@ -147,7 +147,7 @@ namespace Com.Efrata.Service.Sales.Lib.BusinessLogic.Logic.CostCalculationGarmen
 		{
 			int lastFabricNumber = GetLastMaterialFabricNumberByCategoryName(model.UnitCode);
 			int lastNonFabricNumber = GetLastMaterialNonFabricNumberByCategoryName(model.UnitCode);
-            List<string> convectionOption = new List<string> { "AG1", "AG2" };
+            List<string> convectionOption = new List<string> { "EFR" };
             int convectionCode = convectionOption.IndexOf(model.UnitCode) + 1;
 
             DateTime Now = DateTime.Now;

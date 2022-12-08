@@ -38,7 +38,7 @@ namespace Com.Efrata.Service.Sales.Lib.BusinessLogic.Facades.CostCalculationGarm
 
 		public async Task<CostCalculationGarment> CustomCodeGenerator(CostCalculationGarment Model)
 		{
-			List<string> convectionOption = new List<string> { "AG1", "AG2" };
+			List<string> convectionOption = new List<string> { "EFR" };
 			int convectionCode = convectionOption.IndexOf(Model.UnitCode) + 1;
 
 			var lastData = await this.DbSet.Where(w => w.IsDeleted == false && w.UnitCode == Model.UnitCode).OrderByDescending(o => o.CreatedUtc).FirstOrDefaultAsync();
@@ -50,7 +50,7 @@ namespace Com.Efrata.Service.Sales.Lib.BusinessLogic.Facades.CostCalculationGarm
 			{
 				Model.AutoIncrementNumber = 1;
 				string Number = Model.AutoIncrementNumber.ToString().PadLeft(4, '0');
-				Model.RO_Number = $"AG{Year}{convectionCode.ToString()}{Number}";
+				Model.RO_Number = $"EFR{Year}{convectionCode.ToString()}{Number}";
 			}
 			else
 			{
@@ -58,13 +58,13 @@ namespace Com.Efrata.Service.Sales.Lib.BusinessLogic.Facades.CostCalculationGarm
 				{
 					Model.AutoIncrementNumber = 1;
 					string Number = Model.AutoIncrementNumber.ToString().PadLeft(4, '0');
-					Model.RO_Number = $"AG{Year}{convectionCode.ToString()}{Number}";
+					Model.RO_Number = $"EFR{Year}{convectionCode.ToString()}{Number}";
 				}
 				else
 				{
 					Model.AutoIncrementNumber = lastData.AutoIncrementNumber + 1;
 					string Number = Model.AutoIncrementNumber.ToString().PadLeft(4, '0');
-					Model.RO_Number = $"AG{Year}{convectionCode.ToString()}{Number}";
+					Model.RO_Number = $"EFR{Year}{convectionCode.ToString()}{Number}";
 				}
 			}
 

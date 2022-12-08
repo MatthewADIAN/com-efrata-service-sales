@@ -49,7 +49,7 @@ namespace Com.Efrata.Service.Sales.Lib.BusinessLogic.Facades.CostCalculationGarm
             result.Columns.Add(new DataColumn() { ColumnName = "Seksi", DataType = typeof(String) });
             result.Columns.Add(new DataColumn() { ColumnName = "Kode Buyer", DataType = typeof(String) });
             result.Columns.Add(new DataColumn() { ColumnName = "Nama Buyer", DataType = typeof(String) });
-            result.Columns.Add(new DataColumn() { ColumnName = "Tipe Buyer", DataType = typeof(String) });
+            //result.Columns.Add(new DataColumn() { ColumnName = "Tipe Buyer", DataType = typeof(String) });
             result.Columns.Add(new DataColumn() { ColumnName = "Article", DataType = typeof(String) });
             result.Columns.Add(new DataColumn() { ColumnName = "Tgl Shipmnet", DataType = typeof(String) });
             result.Columns.Add(new DataColumn() { ColumnName = "No Plan PO", DataType = typeof(String) });
@@ -63,7 +63,7 @@ namespace Com.Efrata.Service.Sales.Lib.BusinessLogic.Facades.CostCalculationGarm
 
             Dictionary<string, string> Rowcount = new Dictionary<string, string>();
             if (Query.ToArray().Count() == 0)
-                     result.Rows.Add("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""); // to allow column name to be generated properly for empty data as template
+                     result.Rows.Add("", "", "", "", "", "", "", "", "", "", "", "",  "", "", "", ""); // to allow column name to be generated properly for empty data as template
             else
             {
                 Dictionary<string, List<BudgetExportGarmentReportViewModel>> dataByRO = new Dictionary<string, List<BudgetExportGarmentReportViewModel>>();
@@ -92,7 +92,7 @@ namespace Com.Efrata.Service.Sales.Lib.BusinessLogic.Facades.CostCalculationGarm
                         BudgetUOM = item.BudgetUOM,
                         BudgetPrice = item.BudgetPrice,
                         BudgetAmount = item.BudgetAmount,
-                        Type = item.Type
+                        //Type = item.Type
                     });
 
                         if (!subTotalAmount.ContainsKey(RONumber))
@@ -126,12 +126,12 @@ namespace Com.Efrata.Service.Sales.Lib.BusinessLogic.Facades.CostCalculationGarm
                             rowPosition += 1;
                             RO_No = item.RO_Number;
                         }
-                        result.Rows.Add("", "", "", "", "", "", "", "", "", "", "SUB TOTAL", "", RO_No, "", "", "", Math.Round(subTotalAmount[RONo.Key], 2));
+                        result.Rows.Add("", "", "", "", "", "", "", "", "", "SUB TOTAL", "", RO_No, "", "", "", Math.Round(subTotalAmount[RONo.Key], 2));
 
                         rowPosition += 1;
                         totalAmount += subTotalAmount[RONo.Key];
                     }
-                        result.Rows.Add("", "", "", "", "", "", "", "", "", "", "T O T A L", "", "", "", "", "", Math.Round(totalAmount, 2));
+                        result.Rows.Add("", "", "", "", "", "", "", "", "", "T O T A L", "", "", "", "", "", Math.Round(totalAmount, 2));
                         rowPosition += 1;
             }
             ExcelPackage package = new ExcelPackage();

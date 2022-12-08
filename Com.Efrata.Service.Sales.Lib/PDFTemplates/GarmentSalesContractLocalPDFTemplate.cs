@@ -152,9 +152,9 @@ namespace Com.Efrata.Service.Sales.Lib.PDFTemplates
             tableOrder.AddCell(cellOrder);
             cellOrder.Phrase = new Phrase("Quantity Order", bold_font_small);
             tableOrder.AddCell(cellOrder);
-            cellOrder.Phrase = new Phrase("Harga (Exclude PPn)", bold_font_small);
+            cellOrder.Phrase = new Phrase("Harga", bold_font_small);
             tableOrder.AddCell(cellOrder);
-            cellOrder.Phrase = new Phrase("Total Harga (Exclude PPn)", bold_font_small);
+            cellOrder.Phrase = new Phrase("Total Harga", bold_font_small);
             tableOrder.AddCell(cellOrder);
             cellOrder.Phrase = new Phrase("Delivery Date", bold_font_small);
             tableOrder.AddCell(cellOrder);
@@ -171,6 +171,7 @@ namespace Com.Efrata.Service.Sales.Lib.PDFTemplates
                 {
                     foreach(var item in ro.Items)
                     {
+                        double tax = (item.Price * (viewModel.VatValue/100));
                         index++;
                         cellOrder.Phrase = new Phrase(index.ToString(), normal_font_small);
                         tableOrder.AddCell(cellOrder);
@@ -182,15 +183,15 @@ namespace Com.Efrata.Service.Sales.Lib.PDFTemplates
                         tableOrder.AddCell(cellOrder);
                         cellOrder.Phrase = new Phrase(item.Quantity.ToString() + " " + ro.Uom.Unit, normal_font_small);
                         tableOrder.AddCell(cellOrder);
-                        cellOrder.Phrase = new Phrase($"{Number.ToRupiah(item.Price)} / {ro.Uom.Unit}", normal_font_small);
+                        cellOrder.Phrase = new Phrase($"{Number.ToRupiah((item.Price + tax))} / {ro.Uom.Unit}", normal_font_small);
                         tableOrder.AddCell(cellOrder);
-                        cellOrder.Phrase = new Phrase($"{Number.ToRupiah(item.Price*item.Quantity)}", normal_font_small);
+                        cellOrder.Phrase = new Phrase($"{Number.ToRupiah((item.Price + tax) * item.Quantity)}", normal_font_small);
                         tableOrder.AddCell(cellOrder);
                         cellOrder.Phrase = new Phrase(ro.DeliveryDate.ToOffset(new TimeSpan(timeoffset, 0, 0)).ToString("dd/MM/yyyy", new CultureInfo("id-ID")), normal_font_small);
                         tableOrder.AddCell(cellOrder);
                         totalQty += item.Quantity;
-                        totalPrice += item.Price;
-                        totalAmount += item.Quantity * item.Price;
+                        totalPrice += (item.Price + (item.Price * viewModel.VatValue));
+                        totalAmount += item.Quantity * (item.Price + (item.Price * viewModel.VatValue));
 
                         //string key = ro.RONumber + "~" + ro.Uom.Unit;
 
@@ -224,8 +225,8 @@ namespace Com.Efrata.Service.Sales.Lib.PDFTemplates
                     cellOrder.Phrase = new Phrase(ro.DeliveryDate.ToOffset(new TimeSpan(timeoffset, 0, 0)).ToString("dd/MM/yyyy", new CultureInfo("id-ID")), normal_font_small);
                     tableOrder.AddCell(cellOrder);
                     totalQty += ro.Quantity;
-                    totalPrice += ro.Price;
-                    totalAmount += ro.Amount;
+                    totalPrice +=  (ro.Price + (ro.Price * viewModel.VatValue));
+                    totalAmount += ro.Amount + (ro.Price * viewModel.VatValue);
 
 
                     //string key = ro.RONumber + "~" + ro.Uom.Unit;

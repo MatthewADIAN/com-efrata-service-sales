@@ -57,5 +57,8 @@ namespace Com.Efrata.Service.Sales.Lib.Models.GarmentSalesContractModel
         [MaxLength(100)]
         public string RecipientJob { get; set; }
         public virtual ICollection<GarmentSalesContractRO> SalesContractROs { get; set; }
+        public bool UseVat { get; set; }
+        public double VatValue { get; set; }
+        public int VatId { get; set; }
     }
 }

@@ -48,7 +48,7 @@ namespace Com.Efrata.Service.Sales.Lib.BusinessLogic.Facades.Garment
             result.Columns.Add(new DataColumn() { ColumnName = "Jenis Sales Contract", DataType = typeof(string) });
             result.Columns.Add(new DataColumn() { ColumnName = "Buyer Agent", DataType = typeof(string) });
             result.Columns.Add(new DataColumn() { ColumnName = "Buyer Brand", DataType = typeof(string) });
-            result.Columns.Add(new DataColumn() { ColumnName = "Tipe Buyer", DataType = typeof(string) });
+            //result.Columns.Add(new DataColumn() { ColumnName = "Tipe Buyer", DataType = typeof(string) });
             result.Columns.Add(new DataColumn() { ColumnName = "Jumlah Order", DataType = typeof(double) });
             result.Columns.Add(new DataColumn() { ColumnName = "No PR Master", DataType = typeof(string) });
             result.Columns.Add(new DataColumn() { ColumnName = "No RO Master", DataType = typeof(string) });
@@ -87,19 +87,19 @@ namespace Com.Efrata.Service.Sales.Lib.BusinessLogic.Facades.Garment
 
                         if (pr != null && cc != null)
                         {
-                            result.Rows.Add(d.Section, d.SCNo, d.SCDate.ToString("dd MMMM yyyy", new CultureInfo("id-ID")), d.SCType, d.BuyerAgent, d.BuyerBrand, d.Type, d.OrderQuantity, pr.PRNo, pr.RONo, pr.PRType, pr.Unit, pr.Date.ToString("dd MMMM yyyy", new CultureInfo("id-ID")), pr.Article, cc.Date.ToString("dd MMMM yyyy", new CultureInfo("id-ID")), cc.RONo, cc.Article, cc.Unit, cc.Quantity, cc.Uom, cc.ConfirmPrice);
+                            result.Rows.Add(d.Section, d.SCNo, d.SCDate.ToString("dd MMMM yyyy", new CultureInfo("id-ID")), d.SCType, d.BuyerAgent, d.BuyerBrand, d.OrderQuantity, pr.PRNo, pr.RONo, pr.PRType, pr.Unit, pr.Date.ToString("dd MMMM yyyy", new CultureInfo("id-ID")), pr.Article, cc.Date.ToString("dd MMMM yyyy", new CultureInfo("id-ID")), cc.RONo, cc.Article, cc.Unit, cc.Quantity, cc.Uom, cc.ConfirmPrice);
                         }
                         else if (pr != null && cc == null)
                         {
-                            result.Rows.Add(d.Section, d.SCNo, d.SCDate.ToString("dd MMMM yyyy", new CultureInfo("id-ID")), d.SCType, d.BuyerAgent, d.BuyerBrand, d.Type, d.OrderQuantity, pr.PRNo, pr.RONo, pr.PRType, pr.Unit, pr.Date.ToString("dd MMMM yyyy", new CultureInfo("id-ID")), pr.Article, null, null, null, null, null, null, null);
+                            result.Rows.Add(d.Section, d.SCNo, d.SCDate.ToString("dd MMMM yyyy", new CultureInfo("id-ID")), d.SCType, d.BuyerAgent, d.BuyerBrand, d.OrderQuantity, pr.PRNo, pr.RONo, pr.PRType, pr.Unit, pr.Date.ToString("dd MMMM yyyy", new CultureInfo("id-ID")), pr.Article, null, null, null, null, null, null, null);
                         }
                         else if (pr == null && cc != null)
                         {
-                            result.Rows.Add(d.Section, d.SCNo, d.SCDate.ToString("dd MMMM yyyy", new CultureInfo("id-ID")), d.SCType, d.BuyerAgent, d.BuyerBrand, d.Type, d.OrderQuantity, null, null, null, null, null, null, cc.Date.ToString("dd MMMM yyyy", new CultureInfo("id-ID")), cc.RONo, cc.Article, cc.Unit, cc.Quantity, cc.Uom, cc.ConfirmPrice);
+                            result.Rows.Add(d.Section, d.SCNo, d.SCDate.ToString("dd MMMM yyyy", new CultureInfo("id-ID")), d.SCType, d.BuyerAgent, d.BuyerBrand, d.OrderQuantity, null, null, null, null, null, null, cc.Date.ToString("dd MMMM yyyy", new CultureInfo("id-ID")), cc.RONo, cc.Article, cc.Unit, cc.Quantity, cc.Uom, cc.ConfirmPrice);
                         }
                         else if (pr == null && cc == null)
                         {
-                            result.Rows.Add(d.Section, d.SCNo, d.SCDate.ToString("dd MMMM yyyy", new CultureInfo("id-ID")), d.SCType, d.BuyerAgent, d.BuyerBrand, d.Type, d.OrderQuantity, null, null, null, null, null, null, null, null, null, null, null, null, null);
+                            result.Rows.Add(d.Section, d.SCNo, d.SCDate.ToString("dd MMMM yyyy", new CultureInfo("id-ID")), d.SCType, d.BuyerAgent, d.BuyerBrand, d.OrderQuantity, null, null, null, null, null, null, null, null, null, null, null, null, null);
                         }
                         lastMergedRowPosition = rowPosition++;
                     }
@@ -117,7 +117,7 @@ namespace Com.Efrata.Service.Sales.Lib.BusinessLogic.Facades.Garment
             }
             else
             {
-                result.Rows.Add(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+                result.Rows.Add(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
             }
 
             sheet.Cells["A1"].LoadFromDataTable(result, true, TableStyles.Light16);
