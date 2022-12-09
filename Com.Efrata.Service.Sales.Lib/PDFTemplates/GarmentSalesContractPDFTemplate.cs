@@ -556,8 +556,8 @@ namespace Com.Efrata.Service.Sales.Lib.PDFTemplates
             if (image.Width > 160)
             {
                 float percentage = 0.0f;
-                percentage = 160 / image.Width;
-                image.ScalePercent(percentage * 100);
+                percentage = 110 / image.Width;
+                image.ScalePercent(percentage * 60);
             }
             image.SetAbsolutePosition(headOfficeX - (image.ScaledWidth / 2), headOfficeY);
             cb.AddImage(image, inlineImage: true);
