@@ -121,7 +121,7 @@ namespace Com.Efrata.Service.Sales.Lib.BusinessLogic.Facades.CostCalculationGarm
                             string BgtPrice = string.Format("{0:N4}", item.BudgetPrice);
                             string BgtAmt = string.Format("{0:N2}", item.BudgetAmount);
 
-                            result.Rows.Add(index, item.RO_Number, item.UnitName, item.Section, item.BuyerCode, item.BuyerName, item.Type, item.Article, ShipDate, 
+                            result.Rows.Add(index, item.RO_Number, item.UnitName, item.Section, item.BuyerCode, item.BuyerName,   item.Article, ShipDate, 
                                             item.PONumber, item.CategoryName, item.ProductCode, item.ProductName, BgtQty, item.BudgetUOM, BgtPrice, BgtAmt);
                             rowPosition += 1;
                             RO_No = item.RO_Number;
