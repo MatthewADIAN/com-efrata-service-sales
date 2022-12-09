@@ -142,7 +142,7 @@ namespace Com.Efrata.Service.Sales.Lib.BusinessLogic.Facades.CostCalculationGarm
                         totalQty += subTotalQty[BuyerBrand.Key];
                         totalAmount += subTotalAmount[BuyerBrand.Key];
                     }
-                        result.Rows.Add("", "", "", "", "", "", "",  "", "", "", "T O T A L", "", "",  Math.Round(totalQty, 2), "", "", Math.Round(totalAmount, 2));
+                        result.Rows.Add("", "", "", "", "", "", "",  "", "", "","", "T O T A L", "", "", Math.Round(totalQty, 2), "", "", Math.Round(totalAmount, 2));
                         rowPosition += 1;
             }
             ExcelPackage package = new ExcelPackage();
