@@ -4,14 +4,16 @@ using Com.Efrata.Service.Sales.Lib;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Com.Efrata.Service.Sales.Lib.Migrations
 {
     [DbContext(typeof(SalesDbContext))]
-    partial class SalesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221208021251_addUseVat")]
+    partial class addUseVat
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -225,7 +227,7 @@ namespace Com.Efrata.Service.Sales.Lib.Migrations
 
                     b.Property<int>("AutoIncrementNumber");
 
-                    b.Property<double>("BOQuantity");
+                    b.Property<int>("BOQuantity");
 
                     b.Property<int>("BookingOrderId");
 
@@ -2719,8 +2721,6 @@ namespace Com.Efrata.Service.Sales.Lib.Migrations
                         .HasMaxLength(255);
 
                     b.Property<bool>("UseVat");
-
-                    b.Property<int>("VatId");
 
                     b.Property<double>("VatValue");
 

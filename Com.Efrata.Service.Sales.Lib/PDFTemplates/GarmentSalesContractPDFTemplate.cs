@@ -530,14 +530,17 @@ namespace Com.Efrata.Service.Sales.Lib.PDFTemplates
 
             #region LEFT
 
-            var branchOfficeY = height - marginTop + 50;
-            cb.ShowTextAligned(PdfContentByte.ALIGN_LEFT, "BRANCH OFFICE :", marginLeft, branchOfficeY, 0);
+            var branchOfficeY = height - marginTop + 70;
+            cb.ShowTextAligned(PdfContentByte.ALIGN_LEFT, "Head Office :", marginLeft, branchOfficeY, 0);
             string[] branchOffices = {
-                "Equity Tower 15th Floor Suite C",
-                "Sudirman Central Business District (SCBD) Lot 9",
-                "Jl. Jend. Sudirman Kav 52-53 Jakarta 12190",
-                "Tel. : (62-21) 2903-5388. 2903-5389 (Hunting)",
-                "Fax. : (62-21) 2903-5398",
+                "Kel. Banaran, Kec.Grogol",
+                "Kab. Sukoharjo, Jawa Tengah",
+                "T.(+62 271)719911",
+                "F.(+62 271) 719911",
+                "Representative Office",
+                "Jl.CBD Selatan Ruko PMP Tematik P/30",
+                "Curug Sangerang, Kelapa Dua, Tangerang",
+                "T.(+62 21) 29009777",
             };
             for (int i = 0; i < branchOffices.Length; i++)
             {
@@ -556,16 +559,16 @@ namespace Com.Efrata.Service.Sales.Lib.PDFTemplates
             if (image.Width > 160)
             {
                 float percentage = 0.0f;
-                percentage = 160 / image.Width;
-                image.ScalePercent(percentage * 100);
+                percentage = 110 / image.Width;
+                image.ScalePercent(percentage * 60);
             }
             image.SetAbsolutePosition(headOfficeX - (image.ScaledWidth / 2), headOfficeY);
             cb.AddImage(image, inlineImage: true);
 
             string[] headOffices = {
-                "Head Office : JL. MERAPI NO. 23, BANARAN, GROGOL, SUKOHARJO JAWA TENGAH 57552 - INDONESIA",
-                "TELP. 0271-732888",
-                "Website : www.Efratagarmindo.com",
+                "Head Office : Kel. Banaran, Kec.Grogol, Kab. Sukoharjo, Jawa Tengah, T.(+62 271)719911, F.(+62 271) 719911",
+                "Representative Office Jl.CBD Selatan Ruko PMP Tematik P/30, Curug Sangerang, Kelapa Dua, Tangerang ",
+                "T.(+62 21) 29009777",
             };
             for (int i = 0; i < headOffices.Length; i++)
             {
@@ -581,13 +584,13 @@ namespace Com.Efrata.Service.Sales.Lib.PDFTemplates
             if (imageIso.Width > 80)
             {
                 float percentage = 0.0f;
-                percentage = 80 / imageIso.Width;
+                percentage = 90 / imageIso.Width;
                 imageIso.ScalePercent(percentage * 100);
             }
             imageIso.SetAbsolutePosition(width - imageIso.ScaledWidth - marginRight, height - imageIso.ScaledHeight - marginTop + 60);
             cb.AddImage(imageIso, inlineImage: true);
 
-            cb.ShowTextAligned(PdfContentByte.ALIGN_CENTER, "CERTIFICATE ID19 / 05073", width - (imageIso.ScaledWidth / 2) - marginRight, height - imageIso.ScaledHeight - marginTop + 55, 0);
+            //cb.ShowTextAligned(PdfContentByte.ALIGN_CENTER, "CERTIFICATE ID19 / 05073", width - (imageIso.ScaledWidth / 2) - marginRight, height - imageIso.ScaledHeight - marginTop + 55, 0);
 
             #endregion
 

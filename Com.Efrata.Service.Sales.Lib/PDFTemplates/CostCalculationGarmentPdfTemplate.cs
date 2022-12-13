@@ -47,7 +47,7 @@ namespace Com.Efrata.Service.Sales.Lib.PDFTemplates
 			#region Header
 			cb.BeginText();
 			cb.SetFontAndSize(bf, 10);
-			cb.ShowTextAligned(PdfContentByte.ALIGN_LEFT, "PT. Efrata GARMINDO", 10, 820, 0);
+			cb.ShowTextAligned(PdfContentByte.ALIGN_LEFT, "PT. EFRATA RETAILINDO", 10, 820, 0);
 			cb.SetFontAndSize(bf_bold, 12);
 			cb.ShowTextAligned(PdfContentByte.ALIGN_LEFT, "COST CALCULATION GARMENT" + (viewModel.IsPosted ? "" : " (DRAFT)"), 10, 805, 0);
 			cb.EndText();
@@ -445,10 +445,10 @@ namespace Com.Efrata.Service.Sales.Lib.PDFTemplates
             #endregion
 
             #region Signature
-            PdfPTable table_signature = new PdfPTable(4);
+            PdfPTable table_signature = new PdfPTable(3);
 			table_signature.TotalWidth = 570f;
 
-			float[] signature_widths = new float[] { 1f, 1f, 1f, 1f };
+			float[] signature_widths = new float[] { 1f, 1f, 1f };
 			table_signature.SetWidths(signature_widths);
 
 			PdfPCell cell_signature = new PdfPCell() { Border = Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_CENTER, VerticalAlignment = Element.ALIGN_MIDDLE, Padding = 2 };
@@ -469,8 +469,8 @@ namespace Com.Efrata.Service.Sales.Lib.PDFTemplates
             table_signature.AddCell(cell_signature);
             cell_signature.Phrase = new Phrase(signatureArea, normal_font);
 			table_signature.AddCell(cell_signature);
-			cell_signature.Phrase = new Phrase(signatureArea, normal_font);
-			table_signature.AddCell(cell_signature);
+			//cell_signature.Phrase = new Phrase(signatureArea, normal_font);
+			//table_signature.AddCell(cell_signature);
 
             var AssignmentKabag = "";
             var AssignmentKadiv = "";
@@ -498,8 +498,8 @@ namespace Com.Efrata.Service.Sales.Lib.PDFTemplates
 
             cell_signature.Phrase = new Phrase("(  " + AssignMD + "  )", normal_font);
             table_signature.AddCell(cell_signature);
-            cell_signature.Phrase = new Phrase("(  ____________________  )", normal_font);
-            table_signature.AddCell(cell_signature);
+            //cell_signature.Phrase = new Phrase("(  ____________________  )", normal_font);
+            //table_signature.AddCell(cell_signature);
             cell_signature.Phrase = new Phrase("(  " + AssignmentKabag + "  )", normal_font);
             table_signature.AddCell(cell_signature);
             cell_signature.Phrase = new Phrase("(  " + AssignmentKadiv + "  )", normal_font);
@@ -507,9 +507,9 @@ namespace Com.Efrata.Service.Sales.Lib.PDFTemplates
 
             cell_signature.Phrase = new Phrase("Bag. Penjualan", normal_font);
             table_signature.AddCell(cell_signature);
-            cell_signature.Phrase = new Phrase("Marketing", normal_font);
-            table_signature.AddCell(cell_signature);
-            cell_signature.Phrase = new Phrase("Ka. Sie/Ka. Bag Penjualan", normal_font);
+            //cell_signature.Phrase = new Phrase("Marketing", normal_font);
+            //table_signature.AddCell(cell_signature);
+            cell_signature.Phrase = new Phrase("Kasie MD", normal_font);
             table_signature.AddCell(cell_signature);
             cell_signature.Phrase = new Phrase("Direktur Penjualan", normal_font);
             table_signature.AddCell(cell_signature);
