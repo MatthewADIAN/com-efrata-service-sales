@@ -357,7 +357,7 @@ namespace Com.Efrata.Service.Sales.Lib.BusinessLogic.Logic.GarmentBookingOrderLo
 
             List<string> SelectedFields = new List<string>()
             {
-                   "BookingOrderId", "BookingOrderItemId", "BookingOrderNo", "ConfirmDate", "BuyerId", "BuyerCode", "BuyerName", "SectionId", "SectionCode", "SectionName", "ComodityId", "ComodityCode", "ComodityName", "ConfirmQuantity"
+                   "BookingOrderId", "BookingOrderItemId", "BookingOrderNo", "ConfirmDate", "BuyerId", "BuyerCode", "BuyerName", "SectionId", "SectionCode", "SectionName", "ComodityId", "ComodityCode", "ComodityName", "ConfirmQuantity","DeliveryDate"
             };
 
             var QueryX = (from a in Query1
@@ -384,6 +384,7 @@ namespace Com.Efrata.Service.Sales.Lib.BusinessLogic.Logic.GarmentBookingOrderLo
                               ComodityName = b.ComodityName,
                               ConfirmQuantity = b.ConfirmQuantity,
                               CCQuantity = CCG == null ? 0 : CCG.Quantity,
+                              DeliveryDate= b.DeliveryDate
                           });
 
             var QueryY = (from x in QueryX
@@ -402,7 +403,8 @@ namespace Com.Efrata.Service.Sales.Lib.BusinessLogic.Logic.GarmentBookingOrderLo
                               x.SectionName,
                               x.ComodityId,
                               x.ComodityCode,
-                              x.ComodityName
+                              x.ComodityName,
+                              x.DeliveryDate
                           } into G
 
                           select new GarmentBookingOrderForCCGViewModel
@@ -421,6 +423,7 @@ namespace Com.Efrata.Service.Sales.Lib.BusinessLogic.Logic.GarmentBookingOrderLo
                               ComodityCode = G.Key.ComodityCode,
                               ComodityName = G.Key.ComodityName,
                               ConfirmQuantity = (G.Key.ConfirmQuantity * 1.05) - G.Sum(m => m.Qty),
+                              DeliveryDate=G.Key.DeliveryDate
                           }).OrderBy(x => x.BookingOrderNo).ThenBy(x => x.SectionCode).ThenBy(x => x.BuyerCode).ThenBy(x => x.ComodityCode);
 
 
@@ -443,6 +446,7 @@ namespace Com.Efrata.Service.Sales.Lib.BusinessLogic.Logic.GarmentBookingOrderLo
                              ComodityCode = a.ComodityCode,
                              ComodityName = a.ComodityName,
                              ConfirmQuantity = a.ConfirmQuantity,
+                             DeliveryDate=a.DeliveryDate
                          });
             Dictionary<string, string> OrderDictionary = JsonConvert.DeserializeObject<Dictionary<string, string>>(order);
             //Query = QueryHelper<GarmentBookingOrder>.Order(Query, OrderDictionary);
