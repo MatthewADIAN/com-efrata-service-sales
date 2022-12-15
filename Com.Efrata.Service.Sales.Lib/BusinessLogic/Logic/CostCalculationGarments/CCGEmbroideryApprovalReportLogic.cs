@@ -68,7 +68,7 @@ namespace Com.Efrata.Service.Sales.Lib.BusinessLogic.Logic.CostCalculationGarmen
                             BudgetQuantity = b.BudgetQuantity,
                             BudgetUOM = b.UOMPriceName,
                         });
-            return newQ;
+            return newQ.OrderByDescending(x=> x.ValidatedDate);
         }
         private class Filter
         {
