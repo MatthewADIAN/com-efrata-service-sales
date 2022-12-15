@@ -231,7 +231,7 @@ namespace Com.Efrata.Service.Sales.Lib.BusinessLogic.Logic.GarmentSalesContractL
             string Year = model.CreatedUtc.ToString("yy");
             string Month = model.CreatedUtc.ToString("MM");
 
-            string no = $"{model.BuyerBrandCode}/SC/AG/{Year}";
+            string no = $"{model.BuyerBrandCode}/SC/EFRATA/{Year}";
             int Padding = 5;
 
             var lastData = DbSet.IgnoreQueryFilters().Where(w => w.SalesContractNo.StartsWith(no) && !w.IsDeleted).OrderByDescending(o => o.CreatedUtc).FirstOrDefault();
