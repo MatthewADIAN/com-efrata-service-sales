@@ -359,14 +359,14 @@ namespace Com.Efrata.Service.Sales.Lib.BusinessLogic.Logic.GarmentBookingOrderLo
             {
                    "BookingOrderId", "BookingOrderItemId", "BookingOrderNo", "ConfirmDate", "BuyerId", "BuyerCode", "BuyerName", "SectionId", "SectionCode", "SectionName", "ComodityId", "ComodityCode", "ComodityName", "ConfirmQuantity","DeliveryDate"
             };
-
+            var limitdate = DateTimeOffset.Now.AddDays(45).Date;
             var QueryX = (from a in Query1
                           join b in DbContext.GarmentBookingOrderItems on a.Id equals b.BookingOrderId
                           join c in DbContext.CostCalculationGarments on b.Id equals c.BookingOrderItemId into cc
                           from CCG in cc.DefaultIfEmpty()
                           where a.HadConfirmed == true && a.IsCanceled == false && b.IsCanceled == false
                                 && a.BuyerCode == buyer && a.SectionCode == section //&& b.ComodityCode == comodity
-
+                                && a.DeliveryDate.Date>= limitdate
                           select new GarmentBookingOrderForCCGViewModel
                           {
                               BookingOrderId = a.Id,
