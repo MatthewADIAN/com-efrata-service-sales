@@ -528,38 +528,38 @@ namespace Com.Efrata.Service.Sales.Lib.PDFTemplates
 
             cb.SetFontAndSize(bf, 6);
 
-            #region LEFT
+            //#region LEFT
 
-            var branchOfficeY = height - marginTop + 70;
-            cb.ShowTextAligned(PdfContentByte.ALIGN_LEFT, "Head Office :", marginLeft, branchOfficeY, 0);
-            string[] branchOffices = {
-                "Kel. Banaran, Kec.Grogol",
-                "Kab. Sukoharjo, Jawa Tengah",
-                "T.(+62 271)719911",
-                "F.(+62 271) 719911",
-                "Representative Office",
-                "Jl.CBD Selatan Ruko PMP Tematik P/30",
-                "Curug Sangerang, Kelapa Dua, Tangerang",
-                "T.(+62 21) 29009777",
-            };
-            for (int i = 0; i < branchOffices.Length; i++)
-            {
-                cb.ShowTextAligned(PdfContentByte.ALIGN_LEFT, branchOffices[i], marginLeft, branchOfficeY - 10 - (i * 8), 0);
-            }
+            //var branchOfficeY = height - marginTop + 70;
+            //cb.ShowTextAligned(PdfContentByte.ALIGN_LEFT, "Head Office :", marginLeft, branchOfficeY, 0);
+            //string[] branchOffices = {
+            //    "Kel. Banaran, Kec.Grogol",
+            //    "Kab. Sukoharjo, Jawa Tengah",
+            //    "T.(+62 271)719911",
+            //    "F.(+62 271) 719911",
+            //    "Representative Office",
+            //    "Jl.CBD Selatan Ruko PMP Tematik P/30",
+            //    "Curug Sangerang, Kelapa Dua, Tangerang",
+            //    "T.(+62 21) 29009777",
+            //};
+            //for (int i = 0; i < branchOffices.Length; i++)
+            //{
+            //    cb.ShowTextAligned(PdfContentByte.ALIGN_LEFT, branchOffices[i], marginLeft, branchOfficeY - 10 - (i * 8), 0);
+            //}
 
-            #endregion
+            //#endregion
 
             #region CENTER
 
-            var headOfficeX = width / 2 + 30;
-            var headOfficeY = height - marginTop + 45;
+            var headOfficeX = width / 2 - 10;
+            var headOfficeY = height - marginTop + 55;
 
             byte[] imageByte = Convert.FromBase64String(Base64ImageStrings.LOGO_NAME);
             Image image = Image.GetInstance(imageByte);
             if (image.Width > 160)
             {
                 float percentage = 0.0f;
-                percentage = 110 / image.Width;
+                percentage = 140 / image.Width;
                 image.ScalePercent(percentage * 60);
             }
             image.SetAbsolutePosition(headOfficeX - (image.ScaledWidth / 2), headOfficeY);
@@ -572,7 +572,7 @@ namespace Com.Efrata.Service.Sales.Lib.PDFTemplates
             };
             for (int i = 0; i < headOffices.Length; i++)
             {
-                cb.ShowTextAligned(PdfContentByte.ALIGN_CENTER, headOffices[i], headOfficeX, headOfficeY - image.ScaledHeight - (i * 10), 0);
+                cb.ShowTextAligned(PdfContentByte.ALIGN_CENTER, headOffices[i], headOfficeX, headOfficeY - image.ScaledHeight - (i * 10) + 10, 0);
             }
 
             #endregion
