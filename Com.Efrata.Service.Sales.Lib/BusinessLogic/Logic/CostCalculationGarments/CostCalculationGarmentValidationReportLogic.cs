@@ -75,7 +75,7 @@ namespace Com.Efrata.Service.Sales.Lib.BusinessLogic.Logic.CostCalculationGarmen
                         ValidatedDate = a.ApprovedKadivMDDate,
                     });
 
-            return newQ;
+            return newQ.OrderByDescending(x=> x.ValidatedDate);
         }
     }
 }

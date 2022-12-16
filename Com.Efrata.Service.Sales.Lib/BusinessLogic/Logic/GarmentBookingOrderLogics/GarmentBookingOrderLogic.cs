@@ -509,6 +509,8 @@ namespace Com.Efrata.Service.Sales.Lib.BusinessLogic.Logic.GarmentBookingOrderLo
             Dictionary<string, string> OrderDictionary = JsonConvert.DeserializeObject<Dictionary<string, string>>(order);
             Query = QueryHelper<GarmentBookingOrder>.Order(Query, OrderDictionary);
 
+            Query = Query.OrderByDescending(x => x.LastModifiedUtc);
+
             Pageable<GarmentBookingOrder> pageable = new Pageable<GarmentBookingOrder>(Query, page - 1, size);
             List<GarmentBookingOrder> data = pageable.Data.ToList<GarmentBookingOrder>();
             int totalData = pageable.TotalCount;
