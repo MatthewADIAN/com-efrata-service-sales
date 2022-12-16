@@ -249,6 +249,11 @@ namespace Com.Efrata.Service.Sales.Lib.ViewModels.GarmentBookingOrderViewModels
                     yield return new ValidationResult(ItemError, new List<string> { "Items" });
                 }
             }
+
+            if(Remark == null)
+            {
+                yield return new ValidationResult("Keterangan harus diisi!", new List<string> { "Remark" });
+            }
         }
     }
 }

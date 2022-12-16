@@ -51,6 +51,8 @@ namespace Com.Efrata.Service.Sales.Lib.BusinessLogic.Logic.GarmentMasterPlan.Max
             Dictionary<string, string> OrderDictionary = JsonConvert.DeserializeObject<Dictionary<string, string>>(order);
             Query = QueryHelper<MaxWHConfirm>.Order(Query, OrderDictionary);
 
+            Query = Query.OrderByDescending(x => x.LastModifiedUtc);
+
             Pageable<MaxWHConfirm> pageable = new Pageable<MaxWHConfirm>(Query, page - 1, size);
             List<MaxWHConfirm> data = pageable.Data.ToList<MaxWHConfirm>();
             int totalData = pageable.TotalCount;
