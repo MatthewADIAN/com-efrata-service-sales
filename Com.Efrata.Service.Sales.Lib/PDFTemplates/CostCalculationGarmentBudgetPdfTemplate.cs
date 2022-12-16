@@ -35,7 +35,7 @@ namespace Com.Efrata.Service.Sales.Lib.PDFTemplates
 			#region Header
 			cb.BeginText();
 			cb.SetFontAndSize(bf, 10);
-			cb.ShowTextAligned(PdfContentByte.ALIGN_LEFT, "PT. Efrata GARMINDO", 10, 820, 0);
+			cb.ShowTextAligned(PdfContentByte.ALIGN_LEFT, "PT. EFRATA RETAILINDO", 10, 820, 0);
 			cb.SetFontAndSize(bf_bold, 12);
 			cb.ShowTextAligned(PdfContentByte.ALIGN_LEFT, "BUDGET GARMENT" + (viewModel.IsPosted ? "" : " (DRAFT)"), 10, 805, 0);
 			cb.EndText();
@@ -345,7 +345,7 @@ namespace Com.Efrata.Service.Sales.Lib.PDFTemplates
 
             cell_signature.Phrase = new Phrase("Bag. Penjualan", normal_font);
             table_signature.AddCell(cell_signature);
-            cell_signature.Phrase = new Phrase("Ka. Sie/Ka. Bag Penjualan", normal_font);
+            cell_signature.Phrase = new Phrase("Kasie MD", normal_font);
             table_signature.AddCell(cell_signature);
             cell_signature.Phrase = new Phrase("Ka. Sie/Ka .Bag Pembelian", normal_font);
             table_signature.AddCell(cell_signature);
