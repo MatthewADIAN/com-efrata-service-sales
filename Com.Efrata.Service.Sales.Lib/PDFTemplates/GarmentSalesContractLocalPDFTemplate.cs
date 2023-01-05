@@ -190,8 +190,8 @@ namespace Com.Efrata.Service.Sales.Lib.PDFTemplates
                         cellOrder.Phrase = new Phrase(ro.DeliveryDate.ToOffset(new TimeSpan(timeoffset, 0, 0)).ToString("dd/MM/yyyy", new CultureInfo("id-ID")), normal_font_small);
                         tableOrder.AddCell(cellOrder);
                         totalQty += item.Quantity;
-                        totalPrice += (item.Price + (item.Price * viewModel.VatValue));
-                        totalAmount += item.Quantity * (item.Price + (item.Price * viewModel.VatValue));
+                        totalPrice += (item.Price + tax);
+                        totalAmount += item.Quantity * (item.Price + tax);
 
                         //string key = ro.RONumber + "~" + ro.Uom.Unit;
 
@@ -207,6 +207,8 @@ namespace Com.Efrata.Service.Sales.Lib.PDFTemplates
                 }
                 else
                 {
+                    double taxPrice = (ro.Price * (viewModel.VatValue / 100));
+                    double taxAmount = (ro.Amount * (viewModel.VatValue / 100));
                     index++;
                     cellOrder.Phrase = new Phrase(index.ToString(), normal_font_small);
                     tableOrder.AddCell(cellOrder);
@@ -218,15 +220,15 @@ namespace Com.Efrata.Service.Sales.Lib.PDFTemplates
                     tableOrder.AddCell(cellOrder);
                     cellOrder.Phrase = new Phrase(ro.Quantity.ToString() + " " + ro.Uom.Unit, normal_font_small);
                     tableOrder.AddCell(cellOrder);
-                    cellOrder.Phrase = new Phrase($"{Number.ToRupiah(ro.Price)} / {ro.Uom.Unit}", normal_font_small);
+                    cellOrder.Phrase = new Phrase($"{Number.ToRupiah(ro.Price + taxPrice)} / {ro.Uom.Unit}", normal_font_small);
                     tableOrder.AddCell(cellOrder);
-                    cellOrder.Phrase = new Phrase($"{Number.ToRupiah(ro.Amount)}", normal_font_small);
+                    cellOrder.Phrase = new Phrase($"{Number.ToRupiah(ro.Amount + taxAmount)}", normal_font_small);
                     tableOrder.AddCell(cellOrder);
                     cellOrder.Phrase = new Phrase(ro.DeliveryDate.ToOffset(new TimeSpan(timeoffset, 0, 0)).ToString("dd/MM/yyyy", new CultureInfo("id-ID")), normal_font_small);
                     tableOrder.AddCell(cellOrder);
                     totalQty += ro.Quantity;
-                    totalPrice +=  (ro.Price + (ro.Price * viewModel.VatValue));
-                    totalAmount += ro.Amount + (ro.Price * viewModel.VatValue);
+                    totalPrice +=  (ro.Price + (taxPrice));
+                    totalAmount += ro.Amount + (taxAmount);
 
 
                     //string key = ro.RONumber + "~" + ro.Uom.Unit;
