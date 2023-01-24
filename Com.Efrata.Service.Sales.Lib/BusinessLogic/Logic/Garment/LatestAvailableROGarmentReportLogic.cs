@@ -54,6 +54,9 @@ namespace Com.Efrata.Service.Sales.Lib.BusinessLogic.Logic.Garment
                 Quantity = cc.Quantity,
                 UOMUnit = cc.UOMUnit,
                 LeadTime = cc.LeadTime,
+                SizeRange = cc.SizeRange,
+                RO_GarmentId = cc.RO_GarmentId,
+                CommodityDescription = cc.CommodityDescription,
             });
 
             return result;

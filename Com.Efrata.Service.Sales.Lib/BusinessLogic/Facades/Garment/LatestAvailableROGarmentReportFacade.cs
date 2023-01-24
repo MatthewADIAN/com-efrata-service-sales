@@ -19,14 +19,16 @@ namespace Com.Efrata.Service.Sales.Lib.BusinessLogic.Facades.Garment
     public class LatestAvailableROGarmentReportFacade : ILatestAvailableROGarmentReportFacade
     {
         private LatestAvailableROGarmentReportLogic logic;
+        private readonly SalesDbContext DbContext;
         private IIdentityService identityService;
         private IServiceProvider service;
 
-        public LatestAvailableROGarmentReportFacade(IServiceProvider serviceProvider)
+        public LatestAvailableROGarmentReportFacade(IServiceProvider serviceProvider, SalesDbContext dbContext)
         {
             logic = serviceProvider.GetService<LatestAvailableROGarmentReportLogic>();
             identityService = serviceProvider.GetService<IIdentityService>();
             service = serviceProvider;
+            DbContext = dbContext;
         }
 
         public Tuple<MemoryStream, string> GenerateExcel(string filter = "{}")
@@ -47,6 +49,8 @@ namespace Com.Efrata.Service.Sales.Lib.BusinessLogic.Facades.Garment
             dataTable.Columns.Add(new DataColumn() { ColumnName = "Artikel", DataType = typeof(string) });
             dataTable.Columns.Add(new DataColumn() { ColumnName = "Quantity", DataType = typeof(double) });
             dataTable.Columns.Add(new DataColumn() { ColumnName = "Satuan", DataType = typeof(string) });
+            dataTable.Columns.Add(new DataColumn() { ColumnName = "Fabric", DataType = typeof(string) });
+            dataTable.Columns.Add(new DataColumn() { ColumnName = "Size", DataType = typeof(string) });
 
             List<(string, Enum, Enum)> mergeCells = new List<(string, Enum, Enum)>() { };
 
@@ -55,7 +59,7 @@ namespace Com.Efrata.Service.Sales.Lib.BusinessLogic.Facades.Garment
                 int i = 0;
                 foreach (var d in data)
                 {
-                    dataTable.Rows.Add(++i, d.RONo, d.ApprovedSampleDate.ToString("dd MMMM yyyy", new CultureInfo("id-ID")), d.DeliveryDate.ToString("dd MMMM yyyy", new CultureInfo("id-ID")), d.DateDiff, d.LeadTime, d.BuyerCode, d.Buyer, d.Article, d.Quantity, d.Uom);
+                    dataTable.Rows.Add(++i, d.RONo, d.ApprovedSampleDate.ToString("dd MMMM yyyy", new CultureInfo("id-ID")), d.DeliveryDate.ToString("dd MMMM yyyy", new CultureInfo("id-ID")), d.DateDiff, d.LeadTime, d.BuyerCode, d.Buyer, d.Article, d.Quantity, d.Uom, d.Fabric, d.SizeRange);
                 }
                 dataTable.Rows.Add(null, null, null, null, null, null, null,  null, null);
                 dataTable.Rows.Add(null, null, null, null, null, null, null,  null, null);
@@ -152,7 +156,11 @@ namespace Com.Efrata.Service.Sales.Lib.BusinessLogic.Facades.Garment
                 Type = buyerQ.Where(x => x.Code == cc.BuyerCode).Select(x => x.Type).FirstOrDefault(),
                 Quantity = cc.Quantity,
                 LeadTime = cc.LeadTime,
-                Uom = cc.UOMUnit
+                Uom = cc.UOMUnit,
+                SizeRange = cc.SizeRange,
+                RO_GarmentId = Convert.ToInt32(cc.RO_GarmentId),
+                Fabric = DbContext.RO_Garment_SizeBreakdowns.Where(d => d.RO_GarmentId == cc.RO_GarmentId).Select(d => d.ColorName).FirstOrDefault(),
+                CommodityDescription = cc.CommodityDescription,
             }).ToList();
 
             return data;
