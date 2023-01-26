@@ -437,7 +437,7 @@ namespace Com.Efrata.Service.Sales.Lib.PDFTemplates
 
 
 
-            var DESC = (viewModel.CostCalculationGarment_Materials.Any(m => m.isFabricCM) ? "FOB PRICE : $ "+ Number.ToRupiahWithoutSymbol(FOB_Remark) + "\n\n" : string.Empty) + fabric;
+            var DESC = (viewModel.CostCalculationGarment_Materials.Any(m => m.isFabricCM) ? "FOB PRICE : "+GetCurrencyValue(FOB_Remark,  isDollar)  + "\n\n" : string.Empty) + fabric;
    //         cell_bottom_column3_1.Phrase = new Phrase("DESCRIPTION", normal_font);
    //table_bottom_column3_1.AddCell(cell_bottom_column3_1);
    //cell_bottom_column3_1.Phrase = new Phrase($"{viewModel.SizeRange + "\n" + viewModel.FabricAllowance + " - " + viewModel.AccessoriesAllowance + "\n" + fabric}", normal_font);
